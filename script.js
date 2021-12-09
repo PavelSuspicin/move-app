@@ -23,12 +23,11 @@ function showMovies(movies) {
   main.innerHTML = ''
 
   movies.forEach((movie) => {
-    const { title, poster_path, vote_average, overview } = movie
-
+    const { title, overview, poster_path, vote_average } = movie
     const movieEl = document.createElement('div')
     movieEl.classList.add('movie')
 
-    movieEl.innerHTML = `    
+    movieEl.innerHTML = `
       <img src="${IMG_PATH + poster_path}" alt="${title}">
       <div class="movie-info">
         <h3>${title}</h3>
@@ -37,7 +36,7 @@ function showMovies(movies) {
       <div class="overview">
         <h3>Overview</h3>
         ${overview}
-      </div>     
+      </div>
     `
     main.appendChild(movieEl)
   })
@@ -54,13 +53,12 @@ function getClassByRate(vote) {
 }
 
 form.addEventListener('submit', (e) => {
-  e.preventDefault()
+  e.preventDefault(e)
 
   const searchTerm = search.value
 
   if (searchTerm && searchTerm !== '') {
     getMovies(SEARCH_API + searchTerm)
-
     search.value = ''
   } else {
     window.location.reload()
